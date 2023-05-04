@@ -13,12 +13,14 @@ class TestLogin:
         driver.find_element(By.XPATH, Locators.LOGIN_PASSWORD_INPUT).send_keys(data.PASSWORD)
         driver.find_element(By.XPATH, Locators.LOGIN_BUTTON).click()
 
-        WebDriverWait(driver, 2).until(
+        element = WebDriverWait(driver, 2).until(
             expected_conditions.visibility_of_element_located((By.XPATH, Locators.CREATE_ORDER_BUTTON)),
             'Не найдена кнопка создания заказа'
         )
 
-        assert driver.current_url in data.URL, 'После логина через кнопку "Войти в аккаунт" нет перехода на главную'
+        assert element.text == 'Оформить заказ', \
+            'После логина через кнопку "Войти в аккаунт" нет кнопки "Оформить заказ", ' \
+            'доступной зарегистрированным пользователям'
 
         driver.quit()
 
@@ -29,12 +31,14 @@ class TestLogin:
         driver.find_element(By.XPATH, Locators.LOGIN_PASSWORD_INPUT).send_keys(data.PASSWORD)
         driver.find_element(By.XPATH, Locators.LOGIN_BUTTON).click()
 
-        WebDriverWait(driver, 2).until(
+        element = WebDriverWait(driver, 2).until(
             expected_conditions.visibility_of_element_located((By.XPATH, Locators.CREATE_ORDER_BUTTON)),
             'Не найдена кнопка создания заказа'
         )
 
-        assert driver.current_url in data.URL, 'После логина через кнопку "Личный кабинет" нет перехода на главную'
+        assert element.text == 'Оформить заказ', \
+            'После логина через кнопку "Личный кабинет" нет кнопки "Оформить заказ", ' \
+            'доступной зарегистрированным пользователям'
 
         driver.quit()
 
@@ -45,11 +49,13 @@ class TestLogin:
         driver.find_element(By.XPATH, Locators.LOGIN_PASSWORD_INPUT).send_keys(data.PASSWORD)
         driver.find_element(By.XPATH, Locators.LOGIN_BUTTON).click()
 
-        WebDriverWait(driver, 2).until(
+        element = WebDriverWait(driver, 2).until(
             expected_conditions.visibility_of_element_located((By.XPATH, Locators.CREATE_ORDER_BUTTON))
         )
 
-        assert driver.current_url in data.URL, 'После логина через кнопку регистрации нет перехода на главную'
+        assert element.text == 'Оформить заказ', \
+            'После логина через кнопку регистрации нет кнопки "Оформить заказ", ' \
+            'доступной зарегистрированным пользователям'
 
         driver.quit()
 
@@ -60,10 +66,12 @@ class TestLogin:
         driver.find_element(By.XPATH, Locators.LOGIN_PASSWORD_INPUT).send_keys(data.PASSWORD)
         driver.find_element(By.XPATH, Locators.LOGIN_BUTTON).click()
 
-        WebDriverWait(driver, 2).until(
+        element = WebDriverWait(driver, 2).until(
             expected_conditions.visibility_of_element_located((By.XPATH, Locators.CREATE_ORDER_BUTTON))
         )
 
-        assert driver.current_url in data.URL, 'После логина через кнопку регистрации нет перехода на главную'
+        assert element.text == 'Оформить заказ', \
+            'После логина через кнопку регистрации нет кнопки "Оформить заказ", ' \
+            'доступной зарегистрированным пользователям'
 
         driver.quit()

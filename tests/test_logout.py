@@ -26,12 +26,12 @@ class TestLogout:
 
         driver.find_element(By.XPATH, Locators.LOGOUT_BUTTON).click()
 
-        WebDriverWait(driver, 5).until(
+        element = WebDriverWait(driver, 5).until(
             expected_conditions.visibility_of_element_located((By.XPATH, Locators.LOGIN_BUTTON)),
             'Не найдена кнопка входа в аккаунт'
         )
 
-        assert driver.current_url in data.LOGIN_URL, \
-            'После выхода из аккаунта не произошло перенаправление на страницу входа'
+        assert element.text == 'Войти', \
+            'После выхода из аккаунта нет кнопки входа, доступной неавторизованным пользователям'
 
         driver.quit()

@@ -21,12 +21,14 @@ class TestTransitions:
 
         driver.find_element(By.XPATH, Locators.PERSONAL_CABINET_LINK).click()
 
-        WebDriverWait(driver, 2).until(
+        element = WebDriverWait(driver, 2).until(
             expected_conditions.visibility_of_element_located((By.XPATH, Locators.LOGOUT_BUTTON)),
             'Не найдена кнопка выхода'
         )
 
-        assert driver.current_url in data.PERSONAL_CABINET_URL, 'Переход не на страницу Личного Кабинета'
+        assert element.text in 'Выход', 'Нет кнопки "Выход", расположенной в Личном Кабинете'
+
+        driver.quit()
 
     def test_transition_from_personal_cabinet_to_constructor_by_constructor_button_success(self, driver, data):
         driver.get(data.URL)
@@ -50,12 +52,14 @@ class TestTransitions:
 
         driver.find_element(By.XPATH, Locators.CONSTRUCTOR_BUTTON).click()
 
-        WebDriverWait(driver, 2).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, Locators.CREATE_ORDER_BUTTON)),
-            'Не найдена кнопка создания заказа'
+        element = WebDriverWait(driver, 2).until(
+            expected_conditions.visibility_of_element_located((By.XPATH, Locators.CONSTRUCTOR_BREAD_SECTION)),
+            'Не найдена секция с булками'
         )
 
-        assert driver.current_url in data.URL, 'Переход не на страницу с конструктором'
+        assert element.text == 'Булки', 'Отсутствует секция с булками, доступная в конструкторе'
+
+        driver.quit()
 
     def test_transition_from_personal_cabinet_to_constructor_by_logo_success(self, driver, data):
         driver.get(data.URL)
@@ -79,9 +83,11 @@ class TestTransitions:
 
         driver.find_element(By.XPATH, Locators.CONSTRUCTOR_BUTTON).click()
 
-        WebDriverWait(driver, 2).until(
-            expected_conditions.visibility_of_element_located((By.XPATH, Locators.CREATE_ORDER_BUTTON)),
-            'Не найдена кнопка создания заказа'
+        element = WebDriverWait(driver, 2).until(
+            expected_conditions.visibility_of_element_located((By.XPATH, Locators.CONSTRUCTOR_BREAD_SECTION)),
+            'Не найдена секция с булками'
         )
 
-        assert driver.current_url in data.URL, 'Переход не на страницу с конструктором'
+        assert element.text == 'Булки', 'Отсутствует секция с булками, доступная в конструкторе'
+
+        driver.quit()

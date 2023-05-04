@@ -9,7 +9,6 @@ class Data:
     PERSONAL_CABINET_URL = f'{URL}account/profile'
     EMAIL = 'test123@tywt.com'
     PASSWORD = 'test123@tywt.com'
-    INCORRECT_PASSWORD_ERROR = 'Некорректный пароль'
 
     def generate_name(self):
         return str(random.randint(100000, 1000000))
